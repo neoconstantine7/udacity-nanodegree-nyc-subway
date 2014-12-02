@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Analyzing the NYC Subway Dataset</title>
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Web Starter Kit">
+    <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#3372DF">
+
+    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+    <!--
+    <link rel="canonical" href="http://www.example.com/">
+    -->
+
+    <!-- Page styles -->
+    <link rel="stylesheet" href="styles/main.css">
+  </head>
+  <body>
+    <header class="app-bar promote-layer">
+      <div class="app-bar-container">
+        <button class="menu"><img src="images/hamburger.svg" alt="Menu"></button>
+        <h1 class="logo">Analyzing the NYC Subway Dataset <strong>Udacity</strong></h1>
+        <section class="app-bar-actions">
+        <!-- Put App Bar Buttons Here -->
+        <!-- e.g <button><i class="icon icon-star"></i></button> -->
+        </section>
+      </div>
+    </header>
+
+    <nav class="navdrawer-container promote-layer">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="#statistical-test">Statistical Tests</a></li>
+        <li><a href="#linear-regression">Linear Regression</a></li>
+        <li><a href="#visualization">Visualization</a></li>
+        <li><a href="#conclusion">Conclusion</a></li>
+        <li><a href="#reflection">Reflection</a></li>
+        <li><a href="#references">References</a></li>
+      </ul>
+    </nav>
+
+    <main class="container">
+
+      <div >
+        <section class="styleguide" id="statistical-test">
+          <h2 class="subsection-title">Section 1. Statistical Test</h2>
+          <h3>Which statistical test did you use?</h3>
+            <p>
+              Because both rainy and non-rainy data sets are non-normally distributed,
+              the Mann-Whitney U-test is the appropriate way to measure the difference in means.
+            </p>
+          <h3>Why is this statistical test appropriate or applicable to the dataset?</h3>
+            <p>
+              The MWUt is a non-parametric test which does not assume any particular
+              distribution, as opposed to Welch’s t-test. Therefore the MWUt is the best
+              fit for the NYC subway data set, simply by appreciating the histogram of the
+              data we can clearly see the data is non-normal.
+            </p>
+          <h3>What results did you get from this statistical test?</h3>
+            <p>
+              The MWUt returned a p-value of 0.025, so we reject the null hypothesis
+              that both data sets are identical and have the same mean. In other words,
+              both sample means are statistically different.
+            </p>
+          <h3>What is the significance of these results?</h3>
+            <p>
+              These results show that subway usage increases when it rains, in a statistically
+               significant way. On average, it increases by 15 riders per hour.
+            </p>
+        </section>
+        <section class="styleguide" id="linear-regression">
+          <h2 class="subsection-title">Section 2. Linear Regression</h2>
+          <h3>What approach did you use to compute the coefficients theta and
+            produce prediction in your regression model:</h3>
+          <ul>
+            <li>Gradient descent (as implemented in exercise 3.5)</li>
+            <li>OLS using Statsmodels</li>
+            <li>Or something different?</li>
+          </ul>
+          <p>
+            Both gradient descent (GD) and OLS models where used to run linear regression on
+            the NYC subway dataset. Both models look for linear relationships between the features
+            and the predicted values or NYC subway rides.
+          </p>
+          <h3>What features did you use in your model?</h3>
+          <p>
+            In the GD model the features used were: rain, presipitation (precipi),
+            hour of the day (Hour), mean temperature (meantempi) and dummy variables
+            for individual station (UNIT).
+
+            In the OLS model, the features used where: rain, mean temperature (meantempi)
+            and dummy variables for stations (UNIT) and dummy variables for hours of day (Hour).
+          </p>
+          <h3>Why are these features appropriate?</h3>
+          <p>
+            After  mixing and matching various features, these were the most relevant and
+            important features based on their explicatory power and statistical significance.
+            I had a bias for choosing the simplest model possible, without loosing too much
+            explicatory power or R^2.
+          </p>
+          <h3>What is your model’s R2 (coefficients of determination) value?</h3>
+          <p>
+            The R squared for the GD model is 0.461. The R squared for the OLS is 0.525.
+          </p>
+          <h3>What does this R2 value mean for the goodness of fit for your regression model?</h3>
+          <p>
+            The R squared for the OLS is 0.525 which means we can explain about  52.5% of
+            the data variability with the model. In other words, our model lets us predict NYC
+            subway entries with 52% accuracy.
+          </p>
+        </section>
+
+        <section class="styleguide" id="visualization">
+          <h2 class="subsection-title">Section 3. Visualization</h2>
+
+        <p>
+        Please include two visualizations that show the relationships between two or
+        more variables in the NYC subway data. You should feel free to implement something
+        that we discussed in class (e.g., scatterplots, line plots, or histograms) or attempt to
+        implement something more advanced if you'd like.
+        </p>
+
+        <h3>
+          One visualization should be two histograms of ENTRIESn_hourly for rainy
+          days and non-rainy days
+        </h3>
+
+        <img src="graphs/rain histogram.png" alt="histogram of entries by day">
+
+        <img src="graphs/log rain histogram.png" alt="histogram of entries by day">
+
+        <h3>  One visualization can be more freeform, some suggestions are:
+        Ridership by time-of-day or day-of-week
+        How ridership varies by subway station
+        Which stations have more exits or entries at different times of day
+        </h3>
+
+        <img src="graphs/entries by day.png" alt="histogram of entries by day">
+
+        <img src="graphs/entries by hour.png" alt="histogram of entries by day">
+
+        <section class="styleguide" id="conclusion">
+          <h2 class="subsection-title">Section 4. Conclusion</h2>
+          <p>
+          <h3>From your analysis and interpretation of the data, do more people ride the NYC
+          subway when it is raining versus when it is not raining?</h3>
+          <p>On average, between 15 and 100 more people ride the NYC subway on a rainy day
+          compared to a non-rainy day. These numbers come from using simple mean comparison, and
+          linear regressions with Gradient Descent and OLS. In the mean comparison, we see a difference
+          of 15 entries per hour, while in the gradient descent model the theta for the rain variable was 104.5.
+          Given that the rain variable is a boolean the interpretation of the theta is that when it
+          rains (rain = 1), the model predicts on average 104.5 more people will ride the subway.
+          </p>
+          <h3>What analyses lead you to this conclusion?</h3>
+          <p>
+            The comparison of both means using the Mann-Whitney U-test gives us good
+            reason to believe that there is a statistical significant difference between
+            the two data distributions. Other hints also show up in the Gradient Descent and
+            OLS models, where rain feature had a positive theta of 104.5 and 54.3 respectively.
+          </p>
+        </section>
+        <section class="styleguide" id="reflection">
+          <h2 class="subsection-title">Section 5. Reflection</h2>
+          <h3>
+            Please discuss potential shortcomings of the dataset and the methods of your analysis.
+          </h3>
+          <p>
+          One of the possible shortcomings of the dataset is that there might be omitted
+          variables like festivity or event dates, closed dates for maintenance, etc.
+          Another important point to make is that in both the linear models a lot of dummy
+          variables were used, which removes a lot of degrees of freedom and increases chances of
+          multicollinearity. For example, I was unable to add three sets of dummy variables
+          for hours of day, day of week and stations.
+          </p>
+        </section>
+        <section class="styleguide" id="references">
+          <h2 class="subsection-title">References</h2>
+          <ul>
+            <li>
+              GGPlot (<a href="http://ggplot.yhathq.com/docs/index.html"> http://ggplot.yhathq.com/docs/index.html </a>)</li>
+            <li>
+              GraphPad (<a href="http://graphpad.com/guides/prism/6/statistics/index.htm?how_the_mann-whitney_test_works.htm">http://graphpad.com/guides/prism/6/statistics/index.htm?how_the_mann-whitney_test_works.htm</a>)
+            </li>
+
+            <li>
+              statsmodels.regression.linear_model.OLS (<a href="http://statsmodels.sourceforge.net/devel/generated/statsmodels.regression.linear_model.OLS.html">http://statsmodels.sourceforge.net/devel/generated/statsmodels.regression.linear_model.OLS.html</a>)
+            </li>
+          </ul>
+        </section>
+      </div>
+    </main>
+    <footer class="gc-footer">
+      <div class="container">
+        <p>
+          <a href="#">Go to top</a>
+        </p>
+      </div>
+    </footer>
+
+    <!-- build:js scripts/main.min.js -->
+    <script src="scripts/main.js"></script>
+    <!-- endbuild -->
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-XXXXX-X', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <!-- Built with love using Web Starter Kit -->
+  </body>
+</html>
