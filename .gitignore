@@ -37,7 +37,6 @@ __pycache__/
 env/
 build/
 develop-eggs/
-dist/
 downloads/
 eggs/
 lib/
@@ -117,4 +116,4 @@ node_modules
 ### Build
 .sass-cache/
 .tmp/
-dist/
+app/
